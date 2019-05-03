@@ -1,0 +1,54 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
+          绑定队伍 / Wisecity6.0商赛小工具</view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<form bindsubmit='toBindUser' report-submit="true">
+  <view class="cu-form-group bg-black">
+    <view class='title'>用户名</view>
+    <form bindsubmit='showUserName' report-submit="true">
+      <button class='flex cu-btn bg-black' form-type="submit">点此输入用户名 ＞</button>
+    </form>
+    <input placeholder="请输入用户名" name='userName' confirm-type='next' style='color:white;display:{{showUserName}}'></input>
+  </view>
+  <view class="cu-form-group bg-black">
+    <view class='title'>密码</view>
+    <form bindsubmit='showPassword' report-submit="true">
+      <button class='flex cu-btn bg-black' form-type="submit">点此输入密码 ＞</button>
+    </form>
+    <input placeholder="请输入密码" name='password' password='true' style='color:white;display:{{showPassword}}'></input>
+  </view>
+
+  <text>\r\n</text>
+
+  <button class='flex cu-btn bg-green lg' form-type="submit" disabled='{{loading}}' loading='{{loading}}'>确认绑定 ＞</button>
+</form>
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
+  <view style='color:black'>加载中</view>
+</view>
+
+<view class="cu-modal {{modalName=='tipsModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">温馨提示</view>
+    </view>
+    <view class="padding-xl" style='color:black;font-size:16px;'>
+      {{tipsContent}}
+    </view>
+    <view class="cu-bar bg-white">
+      <form bindsubmit="collectFID" report-submit="true">
+        <button formType="submit" style='width:680rpx;' class='bg-white'>> 确 定</button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<include src="/pages/include/footer" />

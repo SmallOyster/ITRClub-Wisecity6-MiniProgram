@@ -1,0 +1,67 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
+          交易 / Wisecity6.0商赛小工具</view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<import src="../../template/navbar.wxml" />
+<template is="wcNav" data="{{...wcNavData}}" />
+
+<view class="cu-list" style='background-color:#FFA042;height:27px;'>
+  <view class="cu-item" style="text-align:center">
+    <text style='font-size:35rpx;font-weight:bold;'>红底为待签收，绿底为已完成，灰底为已退单</text>
+  </view>
+</view>
+
+<text>\n</text>
+
+<view class="cu-list grid col-5" style='background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:30rpx;font-weight:bold;'>类型</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:30rpx;font-weight:bold;'>对象</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:30rpx;font-weight:bold;'>品名</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:30rpx;font-weight:bold;'>创建时</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:30rpx;font-weight:bold;'>操作</text>
+  </view>
+</view>
+
+<view class="cu-list grid col-5" style='margin-top:0;background-color:{{item.status==0?"#FF2D2D":(item.status==1?"#00DB00":"#7B7B7B")}}' wx:for="{{list}}" wx:key>
+  <view class="cu-item" style='padding:0;'>
+    <text style='color:white;font-size:28rpx;'>{{item.type}}</text>
+  </view>
+  <view class="cu-item" style='padding:0;'>
+    <text style='color:white;font-size:28rpx;font-weight:bold;'>{{item.receiver}}</text>
+  </view>
+  <view class="cu-item" style='padding:0;'>
+    <text style='color:white;font-size:28rpx;'>{{item.goods_name}}</text>
+  </view>
+  <view class="cu-item" style='padding:0;'>
+    <text style='color:white;font-size:28rpx;'>{{item.update_time}}</text>
+  </view>
+  <view class="cu-item" style='padding:0;'>
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="id" value='{{item.id}}' hidden='true' />
+      <button formType="submit" style='color:white;margin-top:4px;font-size:28rpx;background-color:{{item.status==0?"#FF2D2D":(item.status==1?"#00DB00":"#7B7B7B")}};'>详情</button>
+    </form>
+  </view>
+</view>
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
+  <view style='color:black'>加载中</view>
+</view>
+
+<include src="/pages/include/footer" />

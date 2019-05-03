@@ -1,0 +1,17 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;padding-top:80px;">
+  <view class="cu-bar fixed bg-gradual-orange" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 积分交易记录
+    </navigator>
+  </view>
+</view>
+
+<view class="text-center margin-top">
+  <text class='text-green' style='font-size:52rpx'>
+		功能正在开发中，敬请期待\n\n
+		Under development
+		please look forward to it.\n
+	</text>
+</view>
+
+<include src="/pages/include/footer" />

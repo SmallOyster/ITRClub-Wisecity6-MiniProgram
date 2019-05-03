@@ -1,0 +1,25 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;padding-top:80px;">
+  <view class="cu-bar fixed bg-gradual-orange" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 扫码登录记录列表
+    </navigator>
+  </view>
+</view>
+
+<view class="cu-list grid col-3" wx:for="{{loginLogList}}" wx:key>
+  <view class="cu-item">
+    <text class='text-cyan' style='font-size:35rpx;font-weight:bold;'>{{item[0]}}</text>
+  </view>
+  <view class="cu-item">
+    <text class='text-mauve' style='font-size:30rpx;font-weight:bold;n'>{{item[1]}}</text>
+  </view>
+  <view class="cu-item">
+    <text>{{item[2]}}</text>
+  </view>
+</view>
+
+<text>\n\n</text>
+
+<button class='cu-btn bg-orange lg flex shadow' bindtap='clearLog'><text class='icon-delete'> 清 空 登 录 记 录</text></button>
+
+<include src="/pages/include/footer" />

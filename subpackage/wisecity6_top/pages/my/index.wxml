@@ -1,0 +1,18 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
+          资料 / Wisecity6.0商赛小工具</view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<import src="../../template/navbar.wxml" />
+<template is="wcNav" data="{{...wcNavData}}" /> 待开发……
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
+  <view style='color:black'>加载中</view>
+</view>

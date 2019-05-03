@@ -1,0 +1,38 @@
+<template name="wcNav">
+  <view style='height: 130rpx;display: flex;flex-direction: row;'>
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="wcNavToUrl" value='../../../wisecity6/pages/index' hidden='true' />
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='width: 25%;z-index:99;background: #333;position: fixed;color: white;'>
+          <view class="icon-home" style='margin-top: -5px;margin-bottom: -17px;'></view> 首页
+        </view>
+      </button>
+    </form>
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="wcNavToUrl" value='../../../wisecity6/pages/financeYearList' hidden='true' />
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='width: 25%;z-index:99;background: #333;position: fixed;color: white;margin-left:25%;'>
+          <view class="icon-time" style='margin-top: -5px;margin-bottom: -17px;'></view> 财年
+        </view>
+      </button>
+    </form>
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="wcNavToUrl" value='../treasury/index' hidden='true' />
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='width: 25%;z-index:99;background: #333;position: fixed;color: white;margin-left:50%;'>
+          <view class="icon-pay" style='margin-top: -5px;margin-bottom: -17px;'></view> 钱包
+        </view>
+      </button>
+    </form>
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="wcNavToUrl" value='../my/index' hidden='true' />
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='width: 25%;z-index:99;background: #333;position: fixed;color: white;margin-left:75%;'>
+          <view class="icon-profile" style='margin-top: -5px;margin-bottom: -17px;'></view> 我
+        </view>
+      </button>
+    </form>
+  </view>
+
+  <text>\n</text>
+</template>

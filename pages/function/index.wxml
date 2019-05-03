@@ -1,0 +1,31 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;padding-top:80px;">
+  <view class="cu-bar fixed bg-gradual-orange" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <text class='action'>功能列表</text>
+  </view>
+</view>
+
+<navigator hover-class='none' url="/subpackage/loginLog/pages/list" class='nav-li bg-green shadow {{toggleDelay?"animation-slide-bottom":""}}' style='animation-delay:0.1s;'>
+  <view class="nav-title">扫码登录记录</view>
+  <view class="nav-name">Scan Login Log List</view>
+  <text class='icon-list'></text>
+</navigator>
+
+<navigator hover-class='none' url="/subpackage/transLog/pages/list" class='nav-li bg-pink shadow {{toggleDelay?"animation-slide-bottom":""}}' style='animation-delay:0.2s;'>
+  <view class="nav-title">积分交易记录</view>
+  <view class="nav-name">Integral Transaction Log</view>
+  <text class='icon-coin'></text>
+</navigator>
+
+<navigator hover-class='none' url="/subpackage/wisecity6/pages/index" class='nav-li bg-black shadow {{toggleDelay?"animation-slide-bottom":""}}' style='animation-delay:0.3s;background-image:url();'>
+  <form bindsubmit="formSubmit" report-submit="true">
+    <button formType="submit" style='background-color: #333;color:#fff;margin:0;padding:0;border-radius:0;'>
+      <view class="nav-title">Wisecity6.0商赛小工具</view>
+      <view class="nav-name">Wisecity6.0 Business Games Tools</view>
+      <text class='icon-recharge'></text>
+    </button>
+  </form>
+</navigator>
+
+<view class='{{toggleDelay?"animation-slide-bottom":""}}' style='animation-delay:0.3s;'>
+  <include src="/pages/include/footer" />
+</view>

@@ -1,0 +1,123 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
+          订单详情 / Wisecity6.0商赛小工具</view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>订单ID</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{orderId}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>订单类型</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.type}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>发起队伍名</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.initiator}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>接收队伍名</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.receiver}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易品名</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.goodsName}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易数量</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.num}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易币种</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.moneyType}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易金额</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.money}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易状态</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:{{info.status==0?"#FF9797":(info.status==1?"#00DB00":"#E0E0E0")}};font-size:32rpx;font-weight:bold;'>{{info.status==0?"待签收":(info.status==1?"已签收":"已退单")}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>发起时间</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.createTime}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>最后修改时间</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.updateTime}}</text>
+  </view>
+</view>
+<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>备注</text>
+  </view>
+  <view class="cu-item">
+    <text style='color:white;font-size:32rpx;'>{{info.remark}}</text>
+  </view>
+</view>
+
+<text>\n\n</text>
+
+<form bindsubmit="collectFID" report-submit="true">
+  <input name="back" value='1' hidden='true' />
+  <button formType="submit" style='color:black;font-size:32rpx;background-color:#93FF93;'>
+    <text decode='true'>&lt; 返 回</text>
+  </button>
+</form>
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
+  <view style='color:black'>加载中</view>
+</view>
+
+<include src="/pages/include/footer" />

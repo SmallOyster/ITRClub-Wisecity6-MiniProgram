@@ -1,0 +1,88 @@
+{
+	"pages": [
+		"pages/SSOScanLogin/index",
+		"pages/SSOScanLogin/auth",
+		"pages/SSOScanLogin/user/bind",
+		"pages/SSOScanLogin/user/info",
+		"pages/user/index",
+		"pages/function/index",
+		"pages/include/footer",
+		"pages/include/aboutUs"
+	],
+	"subpackages": [
+		{
+			"name": "loginLog",
+			"root": "subpackage/loginLog",
+			"pages": [
+				"pages/list"
+			]
+		},
+		{
+			"name": "transLog",
+			"root": "subpackage/transLog",
+			"pages": [
+				"pages/list"
+			]
+		},
+		{
+			"name": "wisecity6",
+			"root": "subpackage/wisecity6",
+			"pages": [
+				"pages/index",
+				"pages/financeYearList",
+				"pages/bindUser"
+			]
+		},
+		{
+			"name": "wisecity6_top",
+			"root": "subpackage/wisecity6_top",
+			"pages": [
+				"pages/treasury/index",
+				"pages/my/index"
+			]
+		},
+		{
+			"name": "wisecity6_teamRed",
+			"root": "subpackage/wisecity6_teamRed",
+			"pages": [
+				"pages/treasury/index",
+				"pages/transLog/list",
+				"pages/transLog/detail"
+			]
+		}
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "",
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"color": "#aaa",
+		"selectedColor": "#1296db",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/SSOScanLogin/index",
+				"iconPath": "/image/tabbar/home.png",
+				"selectedIconPath": "/image/tabbar/home_select.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/function/index",
+				"iconPath": "/image/tabbar/function.png",
+				"selectedIconPath": "/image/tabbar/function_select.png",
+				"text": "功能"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"iconPath": "/image/tabbar/user.png",
+				"selectedIconPath": "/image/tabbar/user_select.png",
+				"text": "用户"
+			}
+		]
+	},
+	"sitemapLocation": "sitemap.json"
+}

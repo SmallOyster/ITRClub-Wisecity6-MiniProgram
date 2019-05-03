@@ -1,0 +1,56 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <input name="wcNavToUrl" value='functionTabbar' hidden='true' />
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;'>
+          <text class='icon-back'></text> 首页 / Wisecity6.0商赛小工具
+        </view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<import src="/subpackage/wisecity6/template/navbar.wxml" />
+<template is="wcNav" data="{{...wcNavData}}" />
+
+<view style='text-align:center;font-size:22px;'>
+  <text>
+	用户角色：{{roleName}}\n
+	队伍名：{{teamName}}\n
+	商帮名：{{groupName}}\n
+	{{nowFinanceYear}}\n
+	{{remainTime}}
+	</text>
+</view>
+
+<view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <form bindsubmit='unbind' report-submit='true'>
+    <button formType='submit' class='cu-btn bg-orange' style='width:200px;font-size:22px;height:50px;'>
+      <text class="icon-link" decode='true'>&nbsp;</text> 解 绑 用 户
+    </button>
+  </form>
+</view>
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
+  <view style='color:black'>加载中</view>
+</view>
+
+<view class="cu-modal {{modalName=='tipsModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">温馨提示</view>
+    </view>
+    <view class="padding-xl" style='color:black;font-size:16px;'>
+      {{tipsContent}}
+    </view>
+    <view class="cu-bar bg-white">
+      <form bindsubmit="collectFID" report-submit="true">
+        <button formType="submit" style='width:680rpx;' class='bg-white'>> 确 定</button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<include src="/pages/include/footer" />
