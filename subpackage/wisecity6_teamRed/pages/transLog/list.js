@@ -12,15 +12,32 @@ Page({
     tipsContent: ''
   },
 
-  onLoad: function(options) {
+  onLoad: function(options, sec = '') {
     let _this = this;
+    let url = app.globalData.wisecityApiUrl + "team/transaction.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId');
+    let orderByData = {};
 
     _this.setData({
       loading: true
     });
 
+    if (options.o == 'm') {
+      orderByData.m = options.v;
+
+      if (_this.data.orderByM == '' || _this.data.orderByM == undefined) {
+        _this.setData({
+          orderByM: options.v
+        })
+      }
+    }
+    if (sec != '') {
+      orderByData.sec = sec;
+    }
+
+    if (orderByData != {}) url += '&orderBy=' + JSON.stringify(orderByData);
+
     wx.request({
-      url: app.globalData.wisecityApiUrl + "team/transaction.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId'),
+      url: url,
       dataType: 'json',
       success: function(ret) {
         ret = ret.data;
@@ -60,4 +77,15 @@ Page({
       })
     }
   },
+
+  toSort: function(opt) {
+    let v = opt.detail.value.o;
+    let _this = this;
+
+    if (this.data.orderByM != undefined) this.onLoad({
+      'o': 'm',
+      'v': _this.data.orderByM
+    }, v);
+    else this.onLoad({}, v);
+  }
 })

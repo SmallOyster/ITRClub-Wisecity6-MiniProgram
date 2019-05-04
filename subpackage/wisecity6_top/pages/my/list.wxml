@@ -10,7 +10,22 @@
 </view>
 
 <import src="../../template/navbar.wxml" />
-<template is="wcNav" data="{{...wcNavData}}" /> 待开发……
+<template is="wcNav" data="{{...wcNavData}}" />
+
+<view style='text-align:center;font-size:22px;'>
+  <text>
+	用户角色：{{roleName}}\n
+	真实姓名：{{realName}}\n\n
+	</text>
+</view>
+
+<view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <form bindsubmit='unbind' report-submit='true'>
+    <button formType='submit' class='cu-btn bg-orange' style='width:200px;font-size:22px;height:50px;'>
+      <text class="icon-link" decode='true'>&nbsp;</text> 解 绑 用 户
+    </button>
+  </form>
+</view>
 
 <view class='cu-load load-modal' wx:if="{{loading}}">
   <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>

@@ -22,7 +22,7 @@ Page({
     })
 
     wx.request({
-      url: app.globalData.wisecityApiUrl + "group/treasury.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_groupId'),
+      url: app.globalData.wisecityApiUrl + "group/treasury.php?mod=list&groupId=" + wx.getStorageSync('wisecity6_groupId'),
       dataType: 'json',
       success: function(ret) {
         ret = ret.data;

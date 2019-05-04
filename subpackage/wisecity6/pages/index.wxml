@@ -20,7 +20,7 @@
 	队伍名：{{teamName}}\n
 	商帮名：{{groupName}}\n
 	{{nowFinanceYear}}\n
-	{{remainTime}}
+	{{remainTime}}\n
 	</text>
 </view>
 

@@ -126,7 +126,7 @@ Page({
   getNowFinanceYear: function() {
     let _this = this;
     wx.request({
-      url: app.globalData.wisecityApiUrl2 + 'financeYear/getNow',
+      url: app.globalData.wisecityApiUrl + 'financeYear.php?mod=now',
       success: function(ret) {
         let data = ret.data;
         let msg = '';

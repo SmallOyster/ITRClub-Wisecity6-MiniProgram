@@ -1,7 +1,7 @@
 const app = getApp();
 
 const getwcNavInfo = () => {
-  if (wx.getStorageSync('wisecity6_navInfo') == []) {
+  if (wx.getStorageSync('wisecity6_navInfo') == [] || wx.getStorageSync('wisecity6_navInfo') == undefined) {
     let ret = {};
 
     if (wx.getStorageSync('wisecity6_role') == 'group' || wx.getStorageSync('wisecity6_role') == 'admin') {

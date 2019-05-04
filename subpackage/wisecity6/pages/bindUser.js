@@ -77,12 +77,15 @@ Page({
           wx.setStorageSync('wisecity6_role', data['role']);
 
           if (data['role'] == 'group') {
+            wx.setStorageSync('wisecity6_realName', data['realName']);
             wx.setStorageSync('wisecity6_groupId', data['groupId']);
             wx.setStorageSync('wisecity6_groupName', data['groupName']);
           } else if (data['role'] == 'team' || data['role'] == 'red') {
             wx.setStorageSync('wisecity6_teamId', data['teamId']);
             wx.setStorageSync('wisecity6_teamName', data['teamName']);
             wx.setStorageSync('wisecity6_groupName', data['groupName']);
+          } else if (data['role'] == 'admin') {
+            wx.setStorageSync('wisecity6_realName', data['realName']);
           }
 
           _this.setData({

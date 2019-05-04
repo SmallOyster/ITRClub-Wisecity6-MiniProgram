@@ -12,9 +12,13 @@
 <import src="../../template/navbar.wxml" />
 <template is="wcNav" data="{{...wcNavData}}" />
 
-<view class="cu-list" style='background-color:#FFA042;height:27px;'>
+<view class="cu-list" style='background-color:#FFA042;height:120px;'>
   <view class="cu-item" style="text-align:center">
-    <text style='font-size:35rpx;font-weight:bold;'>红底为待签收，绿底为已完成，灰底为已退单</text>
+    <text style='font-size:35rpx;font-weight:bold;line-height:0;' decode='true'>
+		红底为待签收，绿底为已完成，灰底为已退单\n
+		点击表格表头可重新排序\n
+		（暂不支持对象排序/点"操作"即按状态排序）
+		</text>
   </view>
 </view>
 
@@ -22,19 +26,39 @@
 
 <view class="cu-list grid col-5" style='background-color:#333;'>
   <view class="cu-item">
-    <text style='color:white;font-size:30rpx;font-weight:bold;'>类型</text>
+    <form bindsubmit="toSort" report-submit="true">
+      <input name='o' value='t' hidden='true' />
+      <button formType="submit" style='border-radius: 0;background: #333;'>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>类型</text>
+      </button>
+    </form>
   </view>
   <view class="cu-item">
     <text style='color:white;font-size:30rpx;font-weight:bold;'>对象</text>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:30rpx;font-weight:bold;'>品名</text>
+    <form bindsubmit="toSort" report-submit="true">
+      <input name='o' value='g' hidden='true' />
+      <button formType="submit" style='border-radius: 0;background: #333;'>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>品名</text>
+      </button>
+    </form>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:30rpx;font-weight:bold;'>创建时</text>
+    <form bindsubmit="toSort" report-submit="true">
+      <input name='o' value='c' hidden='true' />
+      <button formType="submit" style='border-radius: 0;background: #333;'>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>创建时</text>
+      </button>
+    </form>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:30rpx;font-weight:bold;'>操作</text>
+    <form bindsubmit="toSort" report-submit="true">
+      <input name='o' value='s' hidden='true' />
+      <button formType="submit" style='border-radius: 0;background: #333;'>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>操作</text>
+      </button>
+    </form>
   </view>
 </view>
 
