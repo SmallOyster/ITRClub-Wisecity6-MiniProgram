@@ -22,7 +22,7 @@ Page({
     });
 
     wx.request({
-      url: app.globalData.wisecityApiUrl + "team/transaction.php?mod=detail&teamId=" + wx.getStorageSync('wisecity6_teamId') + "&orderId=" + orderId,
+      url: app.globalData.wisecityApiUrl + "transfer.php?mod=detail&teamId=" + wx.getStorageSync('wisecity6_teamId') + "&orderId=" + orderId,
       dataType: 'json',
       success: function(ret) {
         ret = ret.data;
@@ -33,17 +33,15 @@ Page({
         if (ret.code == 200) {
           let data = ret.data;
           let info = data['info'];
-
-          info['type'] = wcUtils.formatTransactionType(info['type']);
-
-          _this.setData({
+          
+					_this.setData({
             info: info
           });
-				} else if (ret.code == 404) {
-					_this.setData({
-						modalName: 'tipsModal'
-					})
-				}
+        } else if (ret.code == 404) {
+          _this.setData({
+            modalName: 'tipsModal'
+          })
+        }
       }
     });
   },
@@ -62,10 +60,10 @@ Page({
     }
   },
 
-	tips404: function (opt) {
-		utils.collectFormId(opt.detail.formId);
-		wx.redirectTo({
-			url: 'list'
-		})
-	}
+  tips404: function(opt) {
+    utils.collectFormId(opt.detail.formId);
+    wx.redirectTo({
+      url: 'list'
+    })
+  }
 })

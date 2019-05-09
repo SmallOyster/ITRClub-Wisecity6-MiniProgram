@@ -27,34 +27,10 @@
 </view>
 <view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
   <view class="cu-item">
-    <text style='color:white;font-size:32rpx;font-weight:bold;'>发起队伍名</text>
+    <text style='color:white;font-size:32rpx;font-weight:bold;'>庄名</text>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.initiator}}</text>
-  </view>
-</view>
-<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;font-weight:bold;'>接收队伍名</text>
-  </view>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.receiver}}</text>
-  </view>
-</view>
-<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易品名</text>
-  </view>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.goodsName}}</text>
-  </view>
-</view>
-<view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;font-weight:bold;'>交易数量</text>
-  </view>
-  <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.num}}</text>
+    <text style='color:white;font-size:32rpx;'>{{info.bankName}}</text>
   </view>
 </view>
 <view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
@@ -62,7 +38,7 @@
     <text style='color:white;font-size:32rpx;font-weight:bold;'>交易币种</text>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.moneyType}}</text>
+    <text style='color:white;font-size:32rpx;'>{{info.moneyTypeName}}</text>
   </view>
 </view>
 <view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
@@ -70,7 +46,7 @@
     <text style='color:white;font-size:32rpx;font-weight:bold;'>交易金额</text>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:32rpx;'>{{info.money}}</text>
+    <text style='color:white;font-size:32rpx;'>{{info.num}}</text>
   </view>
 </view>
 <view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>
@@ -78,7 +54,7 @@
     <text style='color:white;font-size:32rpx;font-weight:bold;'>交易状态</text>
   </view>
   <view class="cu-item">
-    <text style='color:{{info.status==0?"#FF9797":(info.status==1?"#00DB00":"#E0E0E0")}};font-size:32rpx;font-weight:bold;'>{{info.status==0?"待签收":(info.status==1?"已签收":"已退单")}}</text>
+    <text style='color:{{info.bgColor}};font-size:32rpx;font-weight:bold;'>{{info.status}}</text>
   </view>
 </view>
 <view class="cu-list grid col-2" style='margin-top:0;background-color:#333;'>

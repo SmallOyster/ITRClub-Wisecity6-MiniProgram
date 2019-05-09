@@ -38,7 +38,7 @@
 			"root": "subpackage/wisecity6_top",
 			"pages": [
 				"pages/treasury/index",
-				"pages/my/list"
+				"pages/my/index"
 			]
 		},
 		{
@@ -46,8 +46,13 @@
 			"root": "subpackage/wisecity6_teamRed",
 			"pages": [
 				"pages/treasury/index",
+				"pages/transLog/index",
 				"pages/transLog/list",
-				"pages/transLog/detail"
+				"pages/transLog/detail",
+				"pages/bankLog/list",
+				"pages/bankLog/detail",
+				"pages/transferLog/list",
+				"pages/transferLog/detail"
 			]
 		}
 	],

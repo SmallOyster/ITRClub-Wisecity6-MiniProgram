@@ -14,7 +14,7 @@ Page({
 
   onLoad: function(options, sec = '') {
     let _this = this;
-    let url = app.globalData.wisecityApiUrl + "team/transaction.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId');
+    let url = app.globalData.wisecityApiUrl + "bank.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId');
     let orderByData = {};
 
     _this.setData({
@@ -50,9 +50,14 @@ Page({
           let list = data['list'];
 
           for (let i in list) {
-            list[i]['type'] = wcUtils.formatTransactionType(list[i]['type']);
-            if (list[i]['receiver'] == wx.getStorageSync('wisecity6_teamName')) list[i]['teamName'] = list[i]['initiator'];
-            else list[i]['teamName'] = list[i]['receiver'];
+            list[i]['type'] = wcUtils.formatBankType(list[i]['type']);
+
+            if (list[i]['type'] == '借贷') {
+              if (list[i]['status'] == 0) list[i]['bgColor'] = '#00DB00';
+              else if (list[i]['status'] == 1) list[i]['bgColor'] = '#FF2D2D';
+              else if (list[i]['status'] == 2) list[i]['bgColor'] = '#FCFA1E';
+              else if (list[i]['status'] == 3) list[i]['bgColor'] = '#7B7B7B';
+            }
           }
 
           _this.setData({

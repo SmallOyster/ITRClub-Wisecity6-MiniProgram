@@ -1,0 +1,46 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <form bindsubmit="collectFID" report-submit="true">
+      <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
+        <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
+          交易 / Wisecity6.0商赛小工具</view>
+      </button>
+    </form>
+  </view>
+</view>
+
+<import src="../../template/navbar.wxml" />
+<template is="wcNav" data="{{...wcNavData}}" />
+
+<view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <form bindsubmit='go' report-submit='true'>
+    <input name="to" value='list' hidden='true' />
+    <button formType='submit' class='cu-btn bg-blue' style='width:300px;font-size:22px;height:50px;'>
+      <text class="icon-cart" decode='true'>&nbsp;</text> 交 易 记 录
+    </button>
+  </form>
+</view>
+
+<text>\n</text>
+
+<view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <form bindsubmit='go' report-submit='true'>
+    <input name="to" value='../transferLog/list' hidden='true' />
+    <button formType='submit' class='cu-btn bg-green' style='width:300px;font-size:22px;height:50px;'>
+      <text class="icon-sponsor" decode='true'>&nbsp;</text> 转 账 记 录
+    </button>
+  </form>
+</view>
+
+<text>\n</text>
+
+<view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <form bindsubmit='go' report-submit='true'>
+    <input name="to" value='../bankLog/list' hidden='true' />
+    <button formType='submit' class='cu-btn bg-brown' style='width:300px;font-size:22px;height:50px;'>
+      <text class="icon-moneybag" decode='true'>&nbsp;</text> 钱 庄 / 票 庄 记 录
+    </button>
+  </form>
+</view>
+
+<include src="/pages/include/footer" />

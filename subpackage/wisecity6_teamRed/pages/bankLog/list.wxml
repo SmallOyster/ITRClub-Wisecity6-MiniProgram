@@ -1,10 +1,10 @@
 <view class="cu-custom" style="height:{{CustomBar}}px;">
   <view class="cu-bar fixed bg-gradual-black" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <form bindsubmit="collectFID" report-submit="true">
-			<input name="back" value='1' hidden='true' />
+      <input name="back" value='1' hidden='true' />
       <button formType="submit" style='width: 0rpx;height: 0rpx;margin: 0;padding: 0;border-radius: 0;background: #333;'>
         <view style='background: black;position: fixed;color: white;top:18px;padding-left:12px;'>
-          <text class='icon-back'></text> 交易 / Wisecity6.0商赛小工具</view>
+          <text class='icon-back'></text> 两庄 / Wisecity6.0商赛小工具</view>
       </button>
     </form>
   </view>
@@ -16,9 +16,9 @@
 <view class="cu-list" style='background-color:#FFA042;height:120px;'>
   <view class="cu-item" style="text-align:center">
     <text style='font-size:35rpx;font-weight:bold;line-height:0;' decode='true'>
-		红底为待签收，绿底为已完成，灰底为已退单\n
-		点击表格表头可重新排序\n
-		（暂不支持对象排序/点"操作"即按状态排序）
+		（类型=借贷）红底:未还清 | 绿底:已还清\n
+		灰底:借贷待审 | 黄底:延期待审\n
+		:::: 点击表格表头可重新排序 ::::\n
 		</text>
   </view>
 </view>
@@ -35,13 +35,18 @@
     </form>
   </view>
   <view class="cu-item">
-    <text style='color:white;font-size:30rpx;font-weight:bold;'>对象</text>
+    <form bindsubmit="toSort" report-submit="true">
+      <input name='o' value='g' hidden='true' />
+      <button formType="submit" style='border-radius: 0;background: #333;'>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>币种</text>
+      </button>
+    </form>
   </view>
   <view class="cu-item">
     <form bindsubmit="toSort" report-submit="true">
       <input name='o' value='g' hidden='true' />
       <button formType="submit" style='border-radius: 0;background: #333;'>
-        <text style='color:white;font-size:30rpx;font-weight:bold;'>品名</text>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>金额</text>
       </button>
     </form>
   </view>
@@ -49,7 +54,7 @@
     <form bindsubmit="toSort" report-submit="true">
       <input name='o' value='c' hidden='true' />
       <button formType="submit" style='border-radius: 0;background: #333;'>
-        <text style='color:white;font-size:30rpx;font-weight:bold;'>创建时</text>
+        <text style='color:white;font-size:30rpx;font-weight:bold;'>修改时</text>
       </button>
     </form>
   </view>
@@ -63,15 +68,15 @@
   </view>
 </view>
 
-<view class="cu-list grid col-5" style='margin-top:0;background-color:{{item.status==0?"#FF2D2D":(item.status==1?"#00DB00":"#7B7B7B")}}' wx:for="{{list}}" wx:key>
+<view class="cu-list grid col-5" style='margin-top:0;background-color:{{item.bgColor}}' wx:for="{{list}}" wx:key>
   <view class="cu-item" style='padding:0;'>
     <text style='color:white;font-size:28rpx;'>{{item.type}}</text>
   </view>
   <view class="cu-item" style='padding:0;'>
-    <text style='color:white;font-size:28rpx;font-weight:bold;'>{{item.receiver}}</text>
+    <text style='color:white;font-size:28rpx;font-weight:bold;'>{{item.moneyTypeName}}</text>
   </view>
   <view class="cu-item" style='padding:0;'>
-    <text style='color:white;font-size:28rpx;'>{{item.goods_name}}</text>
+    <text style='color:white;font-size:28rpx;'>{{item.num}}</text>
   </view>
   <view class="cu-item" style='padding:0;'>
     <text style='color:white;font-size:28rpx;'>{{item.update_time}}</text>
@@ -79,7 +84,7 @@
   <view class="cu-item" style='padding:0;'>
     <form bindsubmit="collectFID" report-submit="true">
       <input name="id" value='{{item.id}}' hidden='true' />
-      <button formType="submit" style='color:white;margin-top:4px;font-size:28rpx;background-color:{{item.status==0?"#FF2D2D":(item.status==1?"#00DB00":"#7B7B7B")}};'>详情</button>
+      <button formType="submit" style='color:white;margin-top:4px;font-size:28rpx;background-color:{{item.bgColor}};'>详情</button>
     </form>
   </view>
 </view>

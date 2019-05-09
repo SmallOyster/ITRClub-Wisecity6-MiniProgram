@@ -25,7 +25,6 @@ Page({
   },
 
 	formSubmit: function (opt) {
-		console.log(opt.detail.formId);
 		utils.collectFormId(opt.detail.formId);
 	}
 })

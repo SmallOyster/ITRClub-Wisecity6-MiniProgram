@@ -109,7 +109,6 @@ Page({
   },
 
   collectFID: function(opt) {
-    console.log(opt.detail.formId);
     utils.collectFormId(opt.detail.formId);
 
     if (this.data.modalName == 'tipsModal') {

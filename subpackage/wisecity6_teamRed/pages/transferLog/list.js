@@ -14,7 +14,7 @@ Page({
 
   onLoad: function(options, sec = '') {
     let _this = this;
-    let url = app.globalData.wisecityApiUrl + "team/transaction.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId');
+    let url = app.globalData.wisecityApiUrl + "transfer.php?mod=list&teamId=" + wx.getStorageSync('wisecity6_teamId');
     let orderByData = {};
 
     _this.setData({
@@ -48,12 +48,6 @@ Page({
         if (ret.code == 200) {
           let data = ret.data;
           let list = data['list'];
-
-          for (let i in list) {
-            list[i]['type'] = wcUtils.formatTransactionType(list[i]['type']);
-            if (list[i]['receiver'] == wx.getStorageSync('wisecity6_teamName')) list[i]['teamName'] = list[i]['initiator'];
-            else list[i]['teamName'] = list[i]['receiver'];
-          }
 
           _this.setData({
             list: list
