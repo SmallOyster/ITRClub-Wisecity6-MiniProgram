@@ -9,7 +9,8 @@ Page({
     CustomBar: app.globalData.CustomBar,
     loading: false,
     modalName: null,
-    tipsContent: ''
+    tipsContent: '',
+    sessionId: ''
   },
 
   onLoad: function(options, sec = '') {
@@ -35,6 +36,7 @@ Page({
     }
 
     if (orderByData != {}) url += '&orderBy=' + JSON.stringify(orderByData);
+    if (this.data.sessionId != '') url += '&sid=' + this.data.sessionId;
 
     wx.request({
       url: url,
@@ -61,7 +63,8 @@ Page({
           }
 
           _this.setData({
-            list: list
+            list: list,
+            sessionId: data['sessionId']
           });
         }
       }

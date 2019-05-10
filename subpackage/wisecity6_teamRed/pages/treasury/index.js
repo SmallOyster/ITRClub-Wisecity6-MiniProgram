@@ -61,11 +61,11 @@ Page({
       this.setData({
         modalName: null
       })
-    } else if (opt.detail.value.moneyType >= 0) {
+    } else if (opt.detail.value.moneyTypeId >= 0) {
       wx.navigateTo({
-        url: '../transLog/list?o=m&v=' + opt.detail.value.moneyType
+        url: '../transLog/index?o=m&v=' + opt.detail.value.moneyTypeId + "&n=" + opt.detail.value.moneyTypeName
       })
-		} else if (opt.detail.value.wcNavToUrl && opt.detail.value.wcNavToUrl != '../treasury/index') {
+    } else if (opt.detail.value.wcNavToUrl && opt.detail.value.wcNavToUrl != '../treasury/index') {
       wx.redirectTo({
         url: opt.detail.value.wcNavToUrl,
       })

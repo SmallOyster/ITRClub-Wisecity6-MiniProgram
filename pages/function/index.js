@@ -26,5 +26,12 @@ Page({
 
 	formSubmit: function (opt) {
 		utils.collectFormId(opt.detail.formId);
-	}
+	},
+
+	onShareAppMessage: function () {
+		return {
+			title: '[数字ITRClub]小程序功能列表',
+			path: '/pages/function/index'
+		}
+	},
 })

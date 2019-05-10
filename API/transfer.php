@@ -3,9 +3,10 @@
  * @name ITRClub-Wisecity6商赛系统-小程序API-转账
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-05-05
- * @version 2019-05-09
+ * @version 2019-05-10
  */
  
+if(isset($_GET['sid'])) session_id($_GET['sid']);
 session_start();
 require_once 'publicFunc.php';
 
@@ -45,7 +46,7 @@ function getList($dbcon,$teamId=0,$orderBy='')
 
 	$query=PDOQuery($dbcon,$sql,[$teamId,$teamId],[PDO::PARAM_INT,PDO::PARAM_INT]);
 	
-	returnAjaxData(200,'success',['list'=>$query[0]]);
+	returnAjaxData(200,'success',['list'=>$query[0],'sessionId'=>session_id()]);
 }
 
 

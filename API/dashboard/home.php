@@ -3,13 +3,15 @@
  * @name ITRClub-Wisecity6商赛系统-小程序-后台首页
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2018-04-20
- * @version 2019-04-21
+ * @version 2019-05-10
  */
 
+session_start();
 require_once '../publicFunc.php';
+if(!$_SESSION['isLoginWXMP'] || $_SESSION['isLoginWXMP']!=1) die(header('location:login.php'));
 
 $financeYear=json_decode(curl('https://wisecity.itrclub.com/api/financeYear/getNow'),true);
-$financeYear=$financeYear['data']['list'];
+$financeYear=isset($financeYear['data']['list'])?$financeYear['data']['list']:'';
 
 if($financeYear==''){
 	$start=0;
@@ -46,7 +48,7 @@ if($financeYear==''){
 		<?php } ?>
 		<?php }else{ ?>财 年 已 结 束 ！<?php } ?>
 		<hr>
-		▲ <a href='teamBind.php'>队伍绑定管理</a><br>
+		▲ <a href='teamBind.php'>用户绑定管理</a><br>
 		▲ <a href='formId.php'>FormID管理</a><br>
 		<hr>
 		▲ <a href='https://wisecity.itrclub.com/dc/dashborad' target="_blank">开 发 者 中 心 (Web端)</a><br>
@@ -62,6 +64,7 @@ if($financeYear==''){
 	</center>
 	<!-- ./页脚版权 -->
 
+<?php if($start==1){ ?>
 <script>
 function sendFinanceYearEndTips(){
 	password=prompt("请输入 消息推送密钥KEY");
@@ -101,5 +104,7 @@ function sendFinanceYearEndTips(){
 	})
 }
 </script>
+<?php } ?>
+
 </body>
 </html>

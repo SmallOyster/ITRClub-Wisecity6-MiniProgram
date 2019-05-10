@@ -40,7 +40,7 @@
 <view class="cu-modal {{modalName=='tipsModal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">温馨提示</view>
+      <view class="content">温 馨 提 示</view>
     </view>
     <view class="padding-xl" style='color:black;font-size:16px;'>
       {{tipsContent}}
@@ -48,6 +48,29 @@
     <view class="cu-bar bg-white">
       <form bindsubmit="collectFID" report-submit="true">
         <button formType="submit" style='width:680rpx;' class='bg-white'>> 确 定</button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='confirmModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">温 馨 提 示</view>
+    </view>
+    <view class="padding-xl" style='color:black;font-size:20px;color:red;'>
+      确 认 要 解 绑 用 户 吗 ？
+    </view>
+    <view class="cu-bar bg-white">
+      <form bindsubmit="cancelUnbind" report-submit="true">
+        <button formType="submit" style='width:340rpx;' class='bg-white text-green'>
+          <text class="icon-roundclose" decode='true'> 取 消</text>
+        </button>
+      </form>
+      <form bindsubmit="sureUnbind" report-submit="true">
+        <button formType="submit" style='width:340rpx;' class='bg-white text-red'>
+          <text class="icon-roundcheck" decode='true'> 确 认 &gt;</text>
+        </button>
       </form>
     </view>
   </view>

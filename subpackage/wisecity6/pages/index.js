@@ -68,6 +68,19 @@ Page({
   },
 
   unbind: function(opt) {
+    utils.collectFormId(opt.detail.formId);
+    this.setData({
+      modalName: 'confirmModal'
+    })
+  },
+  cancelUnbind: function(opt) {
+    utils.collectFormId(opt.detail.formId);
+    this.setData({
+      modalName: ''
+    })
+  },
+
+  sureUnbind: function(opt) {
     let _this = this;
     _this.setData({
       loading: true
@@ -176,5 +189,11 @@ Page({
   onUnload: function() {
     let _this = this;
     clearInterval(_this.timing);
+  },
+  onShareAppMessage: function() {
+    return {
+      title: 'ITRClub-Wisecity6商赛小工具',
+      path: '/subpackage/wisecity6/pages/index'
+    }
   }
 })

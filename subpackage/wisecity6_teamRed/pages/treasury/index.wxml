@@ -24,7 +24,6 @@
   </view>
 </view>
 
-<!--block wx:if="{{treasury[1]['num']<=0}}"-->
 <block wx:if="{{treasury[1]['num']<0}}">
   <view class="cu-list grid col-3" style='background-color:#333;'>
     <view class="cu-item">
@@ -35,14 +34,14 @@
     </view>
     <view class="cu-item">
       <form bindsubmit="collectFID" report-submit="true">
-        <input name="moneyType" value='0' hidden='true' />
+        <input name="moneyTypeId" value='0' hidden='true' />
+        <input name="moneyTypeName" value='央行-黄金' hidden='true' />
         <button formType="submit" style='color:white;background: #333;margin-top:-8px;'>查询记录</button>
       </form>
     </view>
   </view>
 </block>
 
-<!--block wx:if="{{treasury[1]['num']>0}}"-->
 <block wx:if="{{treasury[1]['num']>=0}}">
   <view class="cu-list grid col-3" style='background-color:#333;' wx:for="{{treasury}}" wx:key>
     <view class="cu-item">
@@ -53,7 +52,8 @@
     </view>
     <view class="cu-item">
       <form bindsubmit="collectFID" report-submit="true">
-        <input name="moneyType" value='{{item.moneyType}}' hidden='true' />
+        <input name="moneyTypeId" value='{{item.moneyType}}' hidden='true' />
+        <input name="moneyTypeName" value='{{item.bank_name}}-{{item.currency}}' hidden='true' />
         <button formType="submit" style='color:white;background: #333;margin-top:-8px;'>查询记录</button>
       </form>
     </view>

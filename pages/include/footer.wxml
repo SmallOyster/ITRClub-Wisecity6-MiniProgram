@@ -3,7 +3,7 @@
 <view class="footer">
   <view class="footer-text" style='line-height:25px;'>
     <text>本系统由 生蚝科技&ITRClub 联合开发
-		代码版权：© 2014-2019 生蚝科技 (V2.0.0.B8)</text>
+		代码版权：© 2014-2019 生蚝科技 (V2.1.6)</text>
   </view>
   <button open-type='feedback' size='mini'>点此联系管理员</button>
 </view>

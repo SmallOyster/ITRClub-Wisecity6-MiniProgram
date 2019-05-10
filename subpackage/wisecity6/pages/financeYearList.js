@@ -52,7 +52,7 @@ Page({
    */
   onShareAppMessage: function() {
     return {
-      title: 'ITRClub-Wisecity6 财年列表',
+      title: 'ITRClub-Wisecity6商赛财年列表',
       path: '/subpackage/wisecity6/pages/financeYearList'
     }
   },

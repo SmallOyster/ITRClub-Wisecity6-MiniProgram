@@ -12,6 +12,12 @@
 <import src="../../template/navbar.wxml" />
 <template is="wcNav" data="{{...wcNavData}}" />
 
+<block wx:if="{{moneyTypeName!=''}}">
+  <view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+    <text style='font-size:22px;font-weight:bold;'>{{moneyTypeName}}\n\n</text>
+  </view>
+</block>
+
 <view style='display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
   <form bindsubmit='go' report-submit='true'>
     <input name="to" value='list' hidden='true' />

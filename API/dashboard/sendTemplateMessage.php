@@ -3,17 +3,18 @@
  * @name ITRClub-Wisecity6商赛系统-小程序后台-人工发送消息
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2018-04-20
- * @version 2019-04-23
+ * @version 2019-05-10
  */
 
 session_start();
 require_once '../publicFunc.php';
+if(!$_SESSION['isLoginWXMP'] || $_SESSION['isLoginWXMP']!=1) die(header('location:login.php'));
 
 if(isset($_GET['openId'],$_GET['formId']) && $_GET['openId'] && $_GET['formId']){
 	$openId=$_GET['openId'];
 	$formId=$_GET['formId'];
-	$query=PDOQuery($dbcon,'SELECT b.name FROM wxmp_open_id a,team b WHERE a.open_id=? AND a.team_id=b.id',[$openId],[PDO::PARAM_STR]);
-	$teamName=$query[0][0]['name'];
+	$query=PDOQuery($dbcon,'SELECT IF(b.org_type=1,(SELECT name FROM team c WHERE c.id=b.org_id),IF(b.org_type=2,(SELECT name FROM `group` c WHERE c.id=b.org_id),"管理员")) AS orgName FROM wxmp_open_id b WHERE b.open_id=?',[$openId],[PDO::PARAM_STR]);
+	$orgName=$query[0][0]['orgName'];
 	$query=PDOQuery($dbcon,'SELECT COUNT(id) FROM wxmp_form_id WHERE form_id=? AND open_id=? AND status=0',[$formId,$openId],[PDO::PARAM_STR,PDO::PARAM_STR]);
 	if($query[0][0]['COUNT(id)']!=1) die(header('location:home.php'));
 }else{
@@ -49,14 +50,14 @@ else{
 
 <body style="padding-top: 13px;">
 	<font style="font-size:38px;line-height: 82px;">
-		<center>ITRClub-WiseCity6 商赛系统后台(小程序端)<br>表单FormID管理</center>
+		<center>ITRClub-WiseCity6 商赛系统后台(小程序端)<br>人工发送服务通知</center>
 		<hr>
 	</font>
 
 	<div style="font-size:25px;padding-left: 15px;">
 		FormID：<?=$formId;?><br>
 		OpenID：<?=$openId;?><br>
-		队伍名：<?=$teamName;?>
+		队伍名：<?=$orgName;?>
 	</div>
 
 	<hr>
@@ -229,7 +230,7 @@ function send(){
 	$.ajax({
 		url:"../templateMessage.php?mod=send",
 		type:'post',
-		data:{remark:"TEST",accessToken:accessToken,formId:formId,openId:openId,templateId:templateId,data:msgData,page:page,emphasisKeyword:emphasisKeyword},
+		data:{remark:"TEST"+id,accessToken:accessToken,formId:formId,openId:openId,templateId:templateId,data:msgData,page:page,emphasisKeyword:emphasisKeyword},
 		dataType:'JSON',
 		success:function(ret){
 			if(ret.code==200){

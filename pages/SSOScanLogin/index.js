@@ -119,7 +119,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '生蚝科技统一身份认证平台扫码登录',
+      title: 'ITRClub统一身份认证平台扫码登录',
       path: '/pages/SSOScanLogin/index'
     }
   }
