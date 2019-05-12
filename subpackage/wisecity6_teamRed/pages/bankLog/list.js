@@ -59,6 +59,8 @@ Page({
               else if (list[i]['status'] == 1) list[i]['bgColor'] = '#FF2D2D';
               else if (list[i]['status'] == 2) list[i]['bgColor'] = '#FCFA1E';
               else if (list[i]['status'] == 3) list[i]['bgColor'] = '#7B7B7B';
+            } else {
+              list[i]['bgColor'] = '#333';
             }
           }
 

@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序-发送异动提醒
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-05-11
- * @version 2019-05-11
+ * @version 2019-05-12
  */
 
 session_start();
@@ -14,6 +14,7 @@ $orgId=inputPost('orgId',0,1);
 $moneyType=inputPost('moneyType',0,1);
 $type=inputPost('type',1,1);
 $num=inputPost('num',0,1);
+$ip=inputPost('ip',0,1);
 
 // 获取队伍里每个人的一个formId
 $formIdQuery=PDOQuery($dbcon,'SELECT MAX(a.form_id) AS formId,a.open_id AS openId FROM wxmp_form_id a,wxmp_open_id b WHERE a.open_id=b.open_id AND b.org_type=? AND b.org_id=? AND a.status=0 GROUP BY a.open_id',[$orgType,$orgId],[PDO::PARAM_INT,PDO::PARAM_INT]);
@@ -39,17 +40,30 @@ else returnAjaxData(2,'Failed to found wallet');
 
 // 查询币种名称
 if($moneyType!=0){
-	$currencyQuery=PDOQuery($dbcon,'SELECT bank_name FROM `group` WHERE bank_id=?',[$moneyType],[PDO::PARAM_INT]);
-	if($currencyQuery[1]==1) $moneyType=$currencyQuery[0][0]['bank_name'];
-	else $moneyType='未知币种';
+	if(strlen($moneyType)>1){
+		$bankId=substr($moneyType,0,1);
+		$moneyType=substr($moneyType,1,1);
+		
+		$bankQuery=PDOQuery($dbcon,'SELECT name FROM `group` WHERE bank_id=?',[$bankId],[PDO::PARAM_INT]);
+		
+		if($moneyType!=0) $currencyQuery=PDOQuery($dbcon,'SELECT bank_name FROM `group` WHERE bank_id=?',[$moneyType],[PDO::PARAM_INT]);
+		else $currencyQuery=[[['bank_name'=>'黄金']],1];
+		
+		if($bankQuery[1]==1 && $currencyQuery[1]==1) $moneyType=$bankQuery[0][0]['name'].'-'.$currencyQuery[0][0]['bank_name'];
+		else $moneyType='未知币种2';
+	}else{
+		$currencyQuery=PDOQuery($dbcon,'SELECT bank_name FROM `group` WHERE bank_id=?',[$moneyType],[PDO::PARAM_INT]);
+		if($currencyQuery[1]==1) $moneyType='央行-'.$currencyQuery[0][0]['bank_name'];
+		else $moneyType='未知币种';
+	}
 }else{
-	$moneyType='黄金';
+	$moneyType='央行-黄金';
 }
 
 $data=json_encode(array(
 	'keyword1'=>['value'=>$moneyType],
 	'keyword2'=>['value'=>$type],
-	'keyword3'=>['value'=>$num],
+	'keyword3'=>['value'=>number_format($num,2,'.','')],
 	'keyword4'=>['value'=>$surplus],
 	'keyword5'=>['value'=>date('Y-m-d H:i:s')],
 	'keyword6'=>['value'=>'如有疑问，请先自行登录网页版查询异动记录，再向主席团询问，谢谢配合！']
@@ -67,7 +81,7 @@ foreach($formIdList as $formIdInfo){
 		'data'=>$data,
 		'page'=>'pages/function/index',
 		'emphasisKeyword'=>'keyword4.DATA',
-		'ip'=>getIP()
+		'ip'=>$ip
 	);
 	$req=json_decode(substr(curl('https://wx.itrclub.com/wisecity6/templateMessage.php?mod=send','post',$postData),3),true);
 	if($req['code']==200) $success++;

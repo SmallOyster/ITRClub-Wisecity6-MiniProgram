@@ -17,6 +17,13 @@ Page({
   onLoad: function(options) {
     let _this = this;
 
+    if (wx.getStorageSync('wisecity6_role') != 'group') {
+      this.setData({
+        modalName: 'backModal'
+      })
+      return;
+    }
+
     _this.setData({
       loading: true
     })
@@ -42,21 +49,25 @@ Page({
     })
   },
 
-	collectFID: function (opt) {
-		utils.collectFormId(opt.detail.formId);
+  collectFID: function(opt) {
+    utils.collectFormId(opt.detail.formId);
 
-		if (this.data.modalName == 'tipsModal') {
-			this.setData({
-				modalName: null
-			})
-		} else if (opt.detail.value.moneyType >= 0) {
-			wx.navigateTo({
-				url: '../transLog/list?o=m&v=' + opt.detail.value.moneyType
-			})
-		} else if (opt.detail.value.wcNavToUrl && opt.detail.value.wcNavToUrl != '../treasury/index') {
-			wx.redirectTo({
-				url: opt.detail.value.wcNavToUrl,
-			})
-		}
-	},
+    if (this.data.modalName == 'tipsModal') {
+      this.setData({
+        modalName: null
+      })
+    } else if (opt.detail.value.moneyType >= 0) {
+      wx.navigateTo({
+        url: '../transLog/list?o=m&v=' + opt.detail.value.moneyType
+      })
+    } else if (opt.detail.value.wcNavToUrl && opt.detail.value.wcNavToUrl != '../treasury/index') {
+      wx.redirectTo({
+        url: opt.detail.value.wcNavToUrl,
+      })
+    } else if (opt.detail.value.back == 1) {
+      wx.redirectTo({
+        url: '../../../wisecity6/pages/index'
+      })
+    }
+  },
 })

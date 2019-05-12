@@ -11,13 +11,15 @@ const getwcNavInfo = () => {
         navIcon: 'profile',
         navName: '我'
       }
-    } else {
+    } else if (wx.getStorageSync('wisecity6_role') != '') {
       ret = {
         navRole: 'teamRed',
         navUrl: 'transLog',
         navIcon: 'cart',
         navName: '交易'
       }
+    } else {
+      return;
     }
 
     wx.setStorageSync('wisecity6_navInfo', ret);

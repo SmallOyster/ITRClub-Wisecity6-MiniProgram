@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序后台-formID管理
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2018-04-20
- * @version 2019-05-10
+ * @version 2019-05-12
  */
  
 session_start();
@@ -81,7 +81,7 @@ $totalPage=ceil($query2[0][0]['COUNT(a.id)']/50);
 			<td><?php if($info['status']==0){echo 'x';}else{echo '√';}?></td>
 			<td><?=$info['create_time'];?></td>
 			<td><?=$info['update_time'];?></td>
-			<td><button class="btn btn-info" onclick="show()">详情</button><?php if($info['status']==0){ ?> <a href="sendTemplateMessage.php?openId=<?=$info['open_id'];?>&formId=<?=$info['form_id'];?>" class="btn btn-success">发送</a><?php } ?></td>
+			<td><button class="btn btn-info" onclick='show("<?=$info['form_id'];?>")'>详情</button><?php if($info['status']==0){ ?> <a href="sendTemplateMessage.php?openId=<?=$info['open_id'];?>&formId=<?=$info['form_id'];?>" class="btn btn-success">发送</a><?php } ?></td>
 		</tr>
 		<?php } ?>
 	</table>
@@ -97,5 +97,75 @@ $totalPage=ceil($query2[0][0]['COUNT(a.id)']/50);
 		</p>
 	</center>
 	<!-- ./页脚版权 -->
+
+<script>
+function show(formId=''){
+	$.ajax({
+		url:'formIdDetail.php?formId='+formId,
+		dataType:'json',
+		success:function(ret){
+			if(ret.code==200){
+				info=ret.data;
+
+				for(i in info){
+					$("#detail_"+i).html(info[i]);
+				}
+
+				$("#detailModal").modal('show');
+			}
+		}
+	})
+}
+</script>
+
+<div class="modal fade" id="detailModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h3 class="modal-title">FormID详情</h3>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped table-bordered table-hover" style="border-radius: 5px; border-collapse: separate;">
+					<tr>
+						<th>openId</th>
+						<td style="text-align: left;" id="detail_open_id"></td>
+					</tr>
+					<tr>
+						<th>所属组织</th>
+						<td style="text-align: left;" id="detail_org_name"></td>
+					</tr>
+					<tr>
+						<th>formID</th>
+						<td style="text-align: left;" id="detail_form_id"></td>
+					</tr>
+					<tr>
+						<th>状态</th>
+						<td style="text-align: left;" id="detail_status"></td>
+					</tr>
+					<tr>
+						<th>备注</th>
+						<td style="text-align: left;" id="detail_remark"></td>
+					</tr>
+					<tr>
+						<th>创建时间</th>
+						<td style="text-align: left;" id="detail_create_time"></td>
+					</tr>
+					<tr>
+						<th>修改时间</th>
+						<td style="text-align: left;" id="detail_update_time"></td>
+					</tr>
+					<tr>
+						<th>修改IP</th>
+						<td style="text-align: left;" id="detail_update_ip"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick='$("#detailModal").modal("hide");'>返回 &gt;</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 </html>

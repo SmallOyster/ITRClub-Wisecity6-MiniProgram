@@ -31,3 +31,5 @@
   <image src='/image/logo.jpg' class='png' mode='aspectFit'></image>
   <view style='color:black'>加载中</view>
 </view>
+
+<include src="/pages/include/footer" />

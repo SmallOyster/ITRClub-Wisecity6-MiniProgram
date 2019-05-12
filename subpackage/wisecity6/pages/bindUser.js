@@ -88,6 +88,9 @@ Page({
             wx.setStorageSync('wisecity6_realName', data['realName']);
           }
 
+          let wcUtils = require('../util.js');
+          wcUtils.getwcNavInfo();
+
           _this.setData({
             modalName: 'tipsModal',
             tipsContent: '绑定成功！',

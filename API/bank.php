@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序API-庄
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-05-08
- * @version 2019-05-10
+ * @version 2019-05-12
  */
  
 if(isset($_GET['sid'])) session_id($_GET['sid']);
@@ -34,7 +34,10 @@ function getList($dbcon,$teamId=0,$orderBy='')
 	
 	$orderBy=json_decode($orderBy,true);
 	foreach($orderBy as $key=>$value){
-		if($key=='m') $sql.="AND a.money_type='{$value}' ";
+		if($key=='m'){
+			if(strlen($value)==1) $sql.="AND a.money_type='{$value}' ";
+			elseif(strlen($value)==2) $sql.="AND a.money_type=".substr($value,1,1)." AND a.bank_id=".substr($value,0,1).' ';
+		}
 		elseif($key=='sec' && $value=='c') $sql.='ORDER BY a.create_time '.$sc;
 		elseif($key=='sec' && $value=='t') $sql.='ORDER BY a.type '.$sc;
 		elseif($key=='sec' && $value=='s') $sql.='ORDER BY a.status '.$sc;

@@ -8,8 +8,7 @@ Page({
 
   data: {
     StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    wcNavData: wcUtils.getwcNavInfo()
+    CustomBar: app.globalData.CustomBar
   },
 
   onLoad: function(options) {
@@ -45,6 +44,13 @@ Page({
       groupName: groupName,
       loading: false
     })
+
+    let wcNavData = wcUtils.getwcNavInfo();
+    if (wcNavData != undefined) {
+      this.setData({
+        wcNavData: wcNavData
+      })
+    }
   },
 
   collectFID: function(opt) {
@@ -116,6 +122,7 @@ Page({
                 wx.removeStorageSync('wisecity6_role');
                 wx.removeStorageSync('wisecity6_teamId');
                 wx.removeStorageSync('wisecity6_teamName');
+                wx.removeStorageSync('wisecity6_realName');
                 wx.removeStorageSync('wisecity6_groupName');
                 wx.removeStorageSync('wisecity6_groupId');
 
