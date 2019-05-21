@@ -25,7 +25,7 @@
 <block wx:if="{{treasury[1]['num']<0}}">
   <view class="cu-list grid col-2" style='background-color:#333;'>
     <view class="cu-item">
-      <text style='color:white;font-size:38rpx;font-weight:bold;'>黄金</text>
+      <text style='color:white;font-size:38rpx;font-weight:bold;'>白银</text>
     </view>
     <view class="cu-item">
       <text style='color:white;font-size:33rpx;font-weight:bold;'>{{treasury[0]['num']}}</text>
@@ -37,7 +37,7 @@
 <block wx:if="{{treasury[1]['num']>=0}}">
   <view class="cu-list grid col-2" style='background-color:#333;' wx:for="{{treasury}}" wx:for-index="moneyType" wx:key>
     <view class="cu-item">
-      <text style='color:white;font-size:38rpx;font-weight:bold;'>黄金</text>
+      <text style='color:white;font-size:38rpx;font-weight:bold;'>白银</text>
     </view>
     <view class="cu-item">
       <text style='color:white;font-size:33rpx;font-weight:bold;'>{{item.num}}</text>

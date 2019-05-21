@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序API-钱库
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-04-29
- * @version 2019-05-04
+ * @version 2019-05-21
  */
 
 require_once '../publicFunc.php';
@@ -45,6 +45,6 @@ function getList($dbcon,$teamId=0)
 function getTicketName($dbcon){
 	$query=PDOQuery($dbcon,'SELECT bank_name AS ticketName FROM `group` WHERE bank_id IN (4,5) ORDER BY bank_id');
 	
-	if($query[1]==2) returnAjaxData(200,'success',[0=>'黄金',4=>$query[0][0]['ticketName'],5=>$query[0][1]['ticketName']]);
+	if($query[1]==2) returnAjaxData(200,'success',[0=>'白银',4=>$query[0][0]['ticketName'],5=>$query[0][1]['ticketName']]);
 	else returnAjaxData(404,'Ticket not found');
 }

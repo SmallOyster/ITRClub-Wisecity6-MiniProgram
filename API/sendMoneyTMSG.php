@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序-发送异动提醒
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-05-11
- * @version 2019-05-12
+ * @version 2019-05-21
  */
 
 session_start();
@@ -47,7 +47,7 @@ if($moneyType!=0){
 		$bankQuery=PDOQuery($dbcon,'SELECT name FROM `group` WHERE bank_id=?',[$bankId],[PDO::PARAM_INT]);
 		
 		if($moneyType!=0) $currencyQuery=PDOQuery($dbcon,'SELECT bank_name FROM `group` WHERE bank_id=?',[$moneyType],[PDO::PARAM_INT]);
-		else $currencyQuery=[[['bank_name'=>'黄金']],1];
+		else $currencyQuery=[[['bank_name'=>'白银']],1];
 		
 		if($bankQuery[1]==1 && $currencyQuery[1]==1) $moneyType=$bankQuery[0][0]['name'].'-'.$currencyQuery[0][0]['bank_name'];
 		else $moneyType='未知币种2';
@@ -57,7 +57,7 @@ if($moneyType!=0){
 		else $moneyType='未知币种';
 	}
 }else{
-	$moneyType='央行-黄金';
+	$moneyType='央行-白银';
 }
 
 $data=json_encode(array(

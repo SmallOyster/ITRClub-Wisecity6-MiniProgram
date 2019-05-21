@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序API-庄
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-05-08
- * @version 2019-05-12
+ * @version 2019-05-21
  */
  
 if(isset($_GET['sid'])) session_id($_GET['sid']);
@@ -30,7 +30,7 @@ function getList($dbcon,$teamId=0,$orderBy='')
 	$sc=isset($_SESSION['itrwc_wxmp_order'])&&$_SESSION['itrwc_wxmp_order']=='ASC'?'DESC':'ASC';
 	$_SESSION['itrwc_wxmp_order']=$sc;
 	
-	$sql='SELECT a.id,a.create_time,a.update_time,a.status,a.type,a.num,a.money_type AS moneyTypeId,IF(a.money_type=0,"黄金",(SELECT b.bank_name FROM `group` b WHERE a.money_type=b.bank_id)) AS moneyTypeName FROM bank_log a WHERE a.team_id=? ';
+	$sql='SELECT a.id,a.create_time,a.update_time,a.status,a.type,a.num,a.money_type AS moneyTypeId,IF(a.money_type=0,"白银",(SELECT b.bank_name FROM `group` b WHERE a.money_type=b.bank_id)) AS moneyTypeName FROM bank_log a WHERE a.team_id=? ';
 	
 	$orderBy=json_decode($orderBy,true);
 	foreach($orderBy as $key=>$value){
@@ -53,7 +53,7 @@ function getList($dbcon,$teamId=0,$orderBy='')
 
 function getDetail($dbcon,$teamId=0,$orderId='')
 {	
-	$query=PDOQuery($dbcon,'SELECT a.id,a.create_time AS createTime,a.update_time AS updateTime,a.status,a.type,a.num,a.remark,a.extra_param AS extraParam,a.money_type AS moneyTypeId,(SELECT real_name FROM user d WHERE d.id=a.update_user_id) AS updateUserName,IF(a.money_type=0,"黄金",(SELECT b.bank_name FROM `group` b WHERE a.money_type=b.bank_id)) AS moneyTypeName,(SELECT bank_name FROM `group` b WHERE a.bank_id=b.id) AS bankName FROM bank_log a WHERE a.team_id=? AND a.id=?',[$teamId,$orderId],[PDO::PARAM_INT,PDO::PARAM_STR]);
+	$query=PDOQuery($dbcon,'SELECT a.id,a.create_time AS createTime,a.update_time AS updateTime,a.status,a.type,a.num,a.remark,a.extra_param AS extraParam,a.money_type AS moneyTypeId,(SELECT real_name FROM user d WHERE d.id=a.update_user_id) AS updateUserName,IF(a.money_type=0,"白银",(SELECT b.bank_name FROM `group` b WHERE a.money_type=b.bank_id)) AS moneyTypeName,(SELECT bank_name FROM `group` b WHERE a.bank_id=b.id) AS bankName FROM bank_log a WHERE a.team_id=? AND a.id=?',[$teamId,$orderId],[PDO::PARAM_INT,PDO::PARAM_STR]);
 	
 	if(isset($query[0][0])){
 		$query[0][0]['extraParam']=json_decode($query[0][0]['extraParam'],true);

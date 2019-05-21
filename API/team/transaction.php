@@ -3,7 +3,7 @@
  * @name ITRClub-Wisecity6商赛系统-小程序API-交易
  * @author Jerry Cheung <master@xshgzs.com>
  * @since 2019-04-29
- * @version 2019-05-10
+ * @version 2019-05-21
  */
 
 if(isset($_GET['sid'])) session_id($_GET['sid']);
@@ -51,7 +51,7 @@ function getList($dbcon,$teamId=0,$orderBy='')
 
 function getDetail($dbcon,$teamId=0,$orderId='')
 {	
-	$query=PDOQuery($dbcon,'SELECT a.type,a.goods_name AS goodsName,a.num,a.money,a.remark,a.extra_param AS extraParam,a.status,a.create_time AS createTime,a.update_time AS updateTime,(SELECT real_name FROM user d WHERE d.id=a.update_user_id) AS updateUserName,IFNULL((SELECT b.name FROM team b WHERE a.from_team_id=b.id),"劳动者") AS initiator,IFNULL((SELECT b.name FROM team b WHERE a.to_team_id=b.id),"劳动者") AS receiver,IFNULL((SELECT c.bank_name FROM `group` c WHERE c.bank_id=a.money_type AND c.bank_id!=0),"黄金") AS moneyType FROM order_log a WHERE a.id=? AND (a.from_team_id=? OR a.to_team_id=?)',[$orderId,$teamId,$teamId],[PDO::PARAM_STR,PDO::PARAM_INT,PDO::PARAM_INT]);
+	$query=PDOQuery($dbcon,'SELECT a.type,a.goods_name AS goodsName,a.num,a.money,a.remark,a.extra_param AS extraParam,a.status,a.create_time AS createTime,a.update_time AS updateTime,(SELECT real_name FROM user d WHERE d.id=a.update_user_id) AS updateUserName,IFNULL((SELECT b.name FROM team b WHERE a.from_team_id=b.id),"劳动者") AS initiator,IFNULL((SELECT b.name FROM team b WHERE a.to_team_id=b.id),"劳动者") AS receiver,IFNULL((SELECT c.bank_name FROM `group` c WHERE c.bank_id=a.money_type AND c.bank_id!=0),"白银") AS moneyType FROM order_log a WHERE a.id=? AND (a.from_team_id=? OR a.to_team_id=?)',[$orderId,$teamId,$teamId],[PDO::PARAM_STR,PDO::PARAM_INT,PDO::PARAM_INT]);
 	
 	if(isset($query[0][0])) returnAjaxData(200,'success',['info'=>$query[0][0]]);
 	else returnAjaxData(404,'Order not found');
