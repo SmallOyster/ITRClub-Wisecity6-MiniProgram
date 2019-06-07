@@ -155,7 +155,7 @@ Page({
         if (data.code == 200) {
           data = data.data.list;
           msg = "当前财年：第 " + data['num'] + " 财年";
-          _this.compareTime(utils.formatTime(new Date(data['end_time'] * 1000)));
+          _this.compareTime(data['end_time']);
         } else {
           msg = "财 年 已 结 束";
         }
@@ -167,26 +167,23 @@ Page({
     })
   },
 
-  compareTime: function(endDate) {
-    let nowDate = utils.getNowDate();
-    let _this = this;
-    let min1 = parseInt(nowDate.substr(11, 2)) * 60 + parseInt(nowDate.substr(14, 2));
-    let min2 = parseInt(endDate.substr(11, 2)) * 60 + parseInt(endDate.substr(14, 2));
-    let n = min2 - min1;
-    let h = 0;
+  compareTime: function(endTime) {
+    let nowTime = Math.round(new Date().getTime() / 1000);
+    let surplusMinute = (endTime - nowTime) / 60;
+    let surplusHour = 0;
 
-    if (n > 60) {
-      h = parseInt(n / 60);
-      n = n % 60;
+    if (surplusMinute > 60) {
+      surplusHour = parseInt(surplusMinute / 60);
+      surplusMinute = Math.round(surplusMinute % 60);
     }
 
     this.setData({
-      remainTime: "剩余时间：" + h + " 时 " + n + " 分 "
+      remainTime: "剩余时间：" + surplusHour + " 时 " + surplusMinute + " 分 "
     });
 
     this.timing = setInterval(function() {
-      _this.compareTime(endDate)
-    }, 30000);
+      _this.compareTime(endTime)
+    }, 50000);
   },
 
   onHide: function() {
